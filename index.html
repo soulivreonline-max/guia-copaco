@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="Guia local de serviços, comércio e informações úteis de Copaco e região.">
+<title>Guia do Bairro — Copaco & Região • BETA</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#e6eaf0;--accent:#111827;--green:#16834b;--red:#c62828}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink)}
+header{background:var(--accent);color:#fff;padding:28px 18px 24px;position:sticky;top:0;z-index:5}
+.wrap{max-width:900px;margin:auto}.brand{font-size:25px;font-weight:800}.sub{margin-top:5px;color:#cbd5e1;font-size:14px}
+.search{margin-top:18px;display:flex;gap:8px}.search input{flex:1;padding:15px 16px;border:0;border-radius:14px;font-size:16px;outline:none}.search button{border:0;border-radius:14px;padding:0 16px;font-size:18px;background:#fff;cursor:pointer}
+main{padding:18px}.hero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px}.hero h1{margin:0 0 6px;font-size:21px}.hero p{margin:0;color:var(--muted);font-size:14px}
+.categories{display:flex;gap:8px;overflow:auto;padding:2px 0 14px}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;cursor:pointer}.chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.emergency{background:#fff4f4;border:1px solid #ffd2d2;border-radius:18px;padding:16px;margin-bottom:16px}.emergency h2{margin:0 0 10px;color:var(--red);font-size:17px}.emgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.em{background:#fff;border:1px solid #ffdede;border-radius:12px;padding:11px;text-decoration:none;color:var(--ink)}.em b{display:block}.em span{font-size:12px;color:var(--muted)}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}.section-title h2{font-size:18px;margin:0}.count{font-size:12px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px}.tag{display:inline-block;background:#eef2f7;border-radius:999px;padding:5px 8px;font-size:11px;color:#475467;margin-bottom:9px}.card h3{margin:0 0 5px;font-size:17px}.card p{margin:0 0 12px;color:var(--muted);font-size:13px;min-height:34px}.actions{display:flex;gap:8px}.actions a{flex:1;text-align:center;padding:10px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px}.call{background:#eef2f7;color:var(--ink)}.wa{background:#e9f8ef;color:var(--green)}
+.bus{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.bus h2{margin:0 0 5px}.bus p{margin:0 0 13px;color:var(--muted);font-size:13px}.tabs{display:flex;gap:7px;margin-bottom:12px}.tab{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px;cursor:pointer}.tab.active{background:var(--accent);color:#fff}.times{display:flex;flex-wrap:wrap;gap:7px}.time{background:#f3f5f8;padding:8px 10px;border-radius:8px;font-weight:650;font-size:13px}
+.join{margin-top:18px;background:#111827;color:#fff;border-radius:18px;padding:18px}.join h2{margin:0 0 6px}.join p{margin:0 0 13px;color:#cbd5e1;font-size:13px}.join button{border:0;border-radius:10px;padding:11px 14px;font-weight:800;cursor:pointer}
+.empty{padding:28px;text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:16px}
+footer{padding:24px 18px;text-align:center;color:#98a2b3;font-size:12px}
+@media(max-width:650px){.cards{grid-template-columns:1fr}.emgrid{grid-template-columns:repeat(2,1fr)}header{position:relative}.search input{min-width:0}}
+
+.hero-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;color:#667085;margin-bottom:7px}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 16px}
+.quick-grid button{border:1px solid var(--line);background:#fff;border-radius:16px;padding:15px;text-align:left;cursor:pointer}
+.quick-grid button:first-letter{font-size:22px}
+.quick-grid b{display:block;margin-top:7px;font-size:14px}.quick-grid span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.featured{display:flex;justify-content:space-between;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;margin-top:18px}
+.featured h2{margin:3px 0 5px;font-size:18px}.featured p{margin:0;color:var(--muted);font-size:13px}.small-label{font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--green)}
+.featured button{border:1px solid var(--line);background:#f7f8fa;border-radius:10px;padding:11px 13px;font-weight:800;cursor:pointer;white-space:nowrap}
+.trust{display:flex;gap:10px;align-items:flex-start;margin-top:14px;color:var(--muted);font-size:11px;padding:0 4px 5px}.trust b{color:var(--ink);white-space:nowrap}
+@media(max-width:650px){.quick-grid{grid-template-columns:repeat(2,1fr)}.featured{display:block}.featured button{margin-top:12px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand">📍 Guia do Bairro — Copaco & Região • BETA</div>
+  <div class="sub">Precisou, chamou. Encontre serviços, comércio e informações úteis perto de você.</div>
+  <div class="search"><input id="q" placeholder="O que você precisa resolver hoje?"><button onclick="clearSearch()">×</button></div>
+</div></header>
+
+
+<main class="wrap">
+<section class="hero">
+  <div class="hero-kicker">GUIA LOCAL • COPACO & REGIÃO</div>
+  <h1>O que você precisa resolver hoje?</h1>
+  <p>Encontre serviços, comércio e informações úteis em poucos toques.</p>
+</section>
+
+<section class="quick-grid" id="quickGrid">
+  <button onclick="setCat('Casa e Veículos')">🔧<b>Casa</b><span>manutenção e reformas</span></button>
+  <button onclick="setCat('Alimentação e Comércio')">🍕<b>Comer & Comprar</b><span>marmita, pizza, mercado</span></button>
+  <button onclick="setCat('Casa e Veículos');q.value='guincho';render()">🚗<b>Veículos</b><span>mecânico e guincho</span></button>
+  <button onclick="setCat('Beleza e Saúde')">💇<b>Beleza & Saúde</b><span>cuidados e serviços</span></button>
+  <button onclick="setCat('Gás, Água e Seguros')">⛽<b>Gás & Água</b><span>entrega e serviços</span></button>
+  <button onclick="setCat('Artesanato')">🎁<b>Personalizados</b><span>artesanato e acessórios</span></button>
+</section>
+
+<section class="emergency">
+<h2>🚨 Preciso de ajuda agora</h2>
+<div class="emgrid">
+<a class="em" href="tel:190"><b>190</b><span>Polícia Militar</span></a>
+<a class="em" href="tel:153"><b>153</b><span>GCM Arujá</span></a>
+<a class="em" href="tel:192"><b>192</b><span>SAMU</span></a>
+<a class="em" href="tel:199"><b>199</b><span>Defesa Civil</span></a>
+</div></section>
+
+<div class="categories" id="cats"></div>
+
+<section>
+<div class="section-title"><h2 id="resultsTitle">Serviços e contatos</h2><span class="count" id="count"></span></div>
+<div class="cards" id="cards"></div>
+</section>
+
+<section class="featured">
+  <div>
+    <span class="small-label">NOVO</span>
+    <h2>📍 Encontrar perto de mim</h2>
+    <p>Na próxima etapa, o Guia poderá usar localização para ordenar prestadores por proximidade.</p>
+  </div>
+  <button onclick="requestLocation()">Ativar localização</button>
+</section>
+
+<section class="bus">
+<h2>🚌 Linha 04 — Copaco x Rodoviária</h2>
+<p>Consulte os horários por dia. VM = Via Granja/Vicente Mateus.</p>
+<div class="tabs">
+<button class="tab active" onclick="showDay('semana',this)">Seg–Sex</button>
+<button class="tab" onclick="showDay('sabado',this)">Sábado</button>
+<button class="tab" onclick="showDay('domingo',this)">Dom/Feriados</button>
+</div>
+<div class="times" id="times"></div>
+</section>
+
+<section class="join">
+<h2>➕ Você é prestador?</h2>
+<p>Quer aparecer no Guia do Bairro? Cadastre seu serviço, WhatsApp e região atendida.</p>
+<button onclick="openProviderForm()">Quero entrar no Guia</button>
+</section>
+
+<section class="trust">
+  <b>🔎 Informação local</b>
+  <span>O Guia é atualizado periodicamente. Confirme disponibilidade, horários e contatos antes de contratar.</span>
+</section>
+
+<section class="beta-box">
+  <div>
+    <span class="beta-label">BETA</span>
+    <h2>🧪 Teste o Guia e me diga o que achou</h2>
+    <p>O objetivo desta fase é descobrir onde o morador trava, o que procura primeiro e o que sente falta.</p>
+  </div>
+  <button onclick="betaFeedback()">Dar feedback</button>
+</section>
+<style>
+.beta-box{display:flex;justify-content:space-between;gap:14px;align-items:center;background:#fff;border:1px dashed #cbd5e1;border-radius:18px;padding:17px;margin-top:18px}
+.beta-label{font-size:10px;font-weight:900;letter-spacing:.1em;color:#667085}
+.beta-box h2{margin:3px 0 5px;font-size:18px}.beta-box p{margin:0;color:var(--muted);font-size:13px}
+.beta-box button{border:0;background:#111827;color:#fff;border-radius:10px;padding:11px 14px;font-weight:800;white-space:nowrap}
+@media(max-width:650px){.beta-box{display:block}.beta-box button{margin-top:12px}}
+</style>
+<script>
+function betaFeedback(){
+  const text=prompt("Beta: em uma frase, o que foi mais fácil ou mais difícil no Guia?");
+  if(text){
+    localStorage.setItem("guiaBetaFeedback", JSON.stringify({feedback:text,data:new Date().toISOString()}));
+    alert("Obrigado! Feedback registrado neste aparelho.");
+  }
+}
+</script>
+
+</main>
+<footer>Guia atualizado periodicamente. Confirme disponibilidade, horários e contatos antes de contratar.</footer>
+
+<script>
+const data=[
+["Casa e Veículos","Drieli Diarista","Diarista","11998536260"],
+["Casa e Veículos","Julio Cesar S. G. Pinto","Elétrica / automação residencial / câmeras / ar-condicionado / cerca elétrica / portão","11942564623"],
+["Casa e Veículos","CLS Celso","Reformas / construções / serviços gerais","11995353803"],
+["Casa e Veículos","Henrique Eletricista","Eletricista","11942342290"],
+["Casa e Veículos","Alberto Eletricista","Eletricista","11941537611"],
+["Casa e Veículos","Manoel Copaco Pedreiro","Pedreiro","11939583980"],
+["Casa e Veículos","Renaldo Montador de Móveis","Montador de móveis","11960302519"],
+["Casa e Veículos","Alex Ferreira Montador de Móveis","Montador de móveis","11940335597"],
+["Casa e Veículos","Caio Cesar Marceneiro","Marcenaria","11992197114"],
+["Casa e Veículos","Emerson","Higienização residencial / automotiva","11987577952"],
+["Casa e Veículos","Tiago Mecânico","Mecânico","11932256677"],
+["Casa e Veículos","Anderson Mecânico","Mecânico","11969047406"],
+["Casa e Veículos","Ricardo Guincho","Guincho","11947271960"],
+["Casa e Veículos","Luiz Ricardo Guincho","Guincho","11930242126"],
+["Casa e Veículos","Kel / Israel Guincho","Guincho","11960920624"],
+["Casa e Veículos","Chicão Guincho","Guincho","11995733691"],
+["Casa e Veículos","Sr. Aurélio","Geladeira / máquina de lavar","11997137975"],
+["Casa e Veículos","Brastec Assistência Técnica","Assistência técnica","11951688554"],
+["Casa e Veículos","André (Freemaks)","Assistência técnica","11945689176"],
+["Casa e Veículos","Natalino","Manutenção geral","11999288626"],
+["Alimentação e Comércio","Marmita Angelica Churrasco","Marmitas / delivery 11h–15h","11995625551"],
+["Alimentação e Comércio","Erika Burger","Hambúrguer","11947595476"],
+["Alimentação e Comércio","Marmitex Copaco","Marmitas","11930342080"],
+["Alimentação e Comércio","Pão Da Vida Marmitex","Marmitas","11944675777"],
+["Alimentação e Comércio","Vila Flora","Restaurante / marmitex","1146535548"],
+["Alimentação e Comércio","Di Palazzo Pizzaria","Pizzaria","11970939120"],
+["Alimentação e Comércio","Pizzaria Crocs","Pizzaria","11977385937"],
+["Alimentação e Comércio","Pizzaria Rincão","Pizzaria","1146531456"],
+["Alimentação e Comércio","Toca do Coelho Adega","Adega","11934117552"],
+["Alimentação e Comércio","Adega Ambition","Adega","11919190889"],
+["Alimentação e Comércio","Drieli Revenda Cosméticos","Cosméticos","11998536260"],
+["Alimentação e Comércio","Sueli Mercadinho","Mercadinho","11932893580"],
+["Alimentação e Comércio","Super Vitória Mercadinho","Mercadinho","11930342080"],
+["Alimentação e Comércio","Construbame","Material de construção / bar / mercearia","11964429064"],
+["Alimentação e Comércio","Koga Empório","Bebidas / gelo / carvão / hortifruti / pães / frios / esfihas / delivery","11914830697"],
+["Artesanato","Ateliê Kfer","Personalizados / acessórios","11973487156"],
+["Beleza e Saúde","Drieli Manicure","Manicure","11998536260"],
+["Beleza e Saúde","Paulo Meira","Terapeuta Reiki e Floral (Bach e Saint Germain) / home / online","11950348583"],
+["Beleza e Saúde","Edinália Cabeleireira","Cabeleireira","11997870249"],
+["Beleza e Saúde","PH Barber Shop","Barbearia","11975039977"],
+["Beleza e Saúde","Joana / Katia Costureira","Costura","11999665091"],
+["Beleza e Saúde","Gabi Estúdio Le Jardin","Mão e pé completo R$75","11997125787"],
+["Beleza e Saúde","Cartão de Todos","Serviços de saúde / benefícios","11988304552"],
+["Gás, Água e Seguros","Gil do Gás","Gás","1146536378"],
+["Gás, Água e Seguros","Thiago Eutimio","Gás / água","11994397499"],
+["Gás, Água e Seguros","Nildo Gás","Gás","11957319502"],
+["Gás, Água e Seguros","Supergasbras","Gás","11993996118"],
+["Gás, Água e Seguros","Carlinhos Gás","Gás","11978710916"],
+["Gás, Água e Seguros","Benezer Gás","Gás","11995166646"],
+["Gás, Água e Seguros","Ariadne Seguros","Seguros","11996074548"],
+["Gás, Água e Seguros","Roberto Seguros","Seguros","11967061245"],
+["Gás, Água e Seguros","Ednilson Barros","Planos de saúde","11983160624"]
+];
+const cats=["Todos","Casa e Veículos","Alimentação e Comércio","Artesanato","Beleza e Saúde","Gás, Água e Seguros"];
+let cat="Todos", day="semana";
+const schedules={
+semana:["05:40","06:10","06:45","06:50","07:20","07:50","08:00","08:30","09:00","09:00","09:30","10:00","11:00 VM","11:30 VM","12:00 VM","12:00","12:30","13:00","13:00","13:30","14:00","14:00","14:30","15:00","15:00","15:30","16:00","16:00","16:30","17:00","17:00","17:30","18:00","18:00","18:30","19:00","19:00","19:30","20:00","20:20 VM","20:50 VM","21:20 VM","21:20 VM","21:50 VM","22:20 VM","22:15","22:40","23:05","23:10 VM","23:30 VM","23:50 VM"],
+sabado:["05:50 VM","06:15 VM","06:45 VM","07:30 VM","08:00 VM","08:30 VM","09:20","09:50","10:20","11:20 VM","11:50 VM","12:20 VM","13:00 VM","13:30 VM","14:00 VM","14:00","14:30","15:00","15:40","16:10","16:40","17:20 VM","17:50 VM","18:20 VM","19:30","20:00","20:30","20:30","21:00","21:30","21:30","22:00","22:30"],
+domingo:["06:20","06:35","06:55","07:10","07:40","08:05","08:10 VM","08:35 VM","08:55 VM","11:00","11:30","11:55","12:00","12:30","12:55","14:00 VM","14:30 VM","14:55 VM","16:00","16:30","16:55","18:00","18:25","18:50","20:00 VM","20:25 VM","20:50 VM","22:00 VM","22:30 VM","23:00 VM"]
+};
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function renderCats(){catsEl.innerHTML=cats.map(c=>`<button class="chip ${c===cat?'active':''}" onclick="setCat('${c}')">${c}</button>`).join("")}
+function render(){
+ const q=norm(document.getElementById("q").value.trim());
+ const arr=data.filter(x=>(cat==="Todos"||x[0]===cat)&&(!q||norm(x.join(" ")).includes(q)));
+ document.getElementById("count").textContent=arr.length+" encontrados";
+ cards.innerHTML=arr.length?arr.map(x=>`<article class="card"><span class="tag">${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p><div class="actions"><a class="call" href="tel:${x[3]}">📞 Ligar</a><a class="wa" href="https://wa.me/55${x[3]}" target="_blank">💬 WhatsApp</a></div></article>`).join(""):`<div class="empty">Nenhum resultado. Tente outro termo ou categoria.</div>`;
+}
+function setCat(c){cat=c;renderCats();render()}
+function clearSearch(){q.value="";render()}
+function showDay(d,el){day=d;document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));el.classList.add("active");times.innerHTML=schedules[d].map(t=>`<span class="time">${t}</span>`).join("")}
+const catsEl=document.getElementById("cats"),cards=document.getElementById("cards"),times=document.getElementById("times"),q=document.getElementById("q");
+q.addEventListener("input",render);renderCats();render();showDay("semana",document.querySelector(".tab"));
+</script>
+
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-x" onclick="closeProviderForm()">×</button>
+    <h2>Quero entrar no Guia</h2>
+    <p>Esta primeira versão apenas coleta a intenção. O cadastro online conectado a banco de dados entra na próxima etapa.</p>
+    <label>Nome / negócio<input id="pname" placeholder="Ex.: João Eletricista"></label>
+    <label>Serviço<input id="pservice" placeholder="Ex.: Eletricista"></label>
+    <label>WhatsApp<input id="pwhats" placeholder="Ex.: (11) 99999-9999"></label>
+    <button class="save-intent" onclick="saveProviderIntent()">Enviar interesse</button>
+    <div id="formMsg"></div>
+  </div>
+</div>
+<style>
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:20px;align-items:center;justify-content:center}
+.modal.open{display:flex}.modal-card{background:#fff;border-radius:20px;max-width:460px;width:100%;padding:20px;position:relative}.modal-card h2{margin:0 0 7px}.modal-card p{color:var(--muted);font-size:13px}.modal-card label{display:block;font-size:12px;font-weight:700;margin-top:12px}.modal-card input{display:block;width:100%;padding:12px;margin-top:5px;border:1px solid var(--line);border-radius:10px;font-size:14px}.modal-x{position:absolute;right:12px;top:9px;border:0;background:transparent;font-size:28px;cursor:pointer}.save-intent{width:100%;margin-top:16px;border:0;border-radius:10px;padding:12px;font-weight:800;cursor:pointer}.form-ok{margin-top:10px;padding:10px;border-radius:10px;background:#e9f8ef;color:#166534;font-size:12px}
+</style>
+<script>
+function openProviderForm(){document.getElementById("modal").classList.add("open")}
+function closeProviderForm(){document.getElementById("modal").classList.remove("open")}
+function saveProviderIntent(){
+  const n=document.getElementById("pname").value.trim(), s=document.getElementById("pservice").value.trim(), w=document.getElementById("pwhats").value.trim();
+  if(!n||!s||!w){document.getElementById("formMsg").innerHTML='<div class="form-ok">Preencha nome, serviço e WhatsApp.</div>';return}
+  localStorage.setItem("providerIntent",JSON.stringify({nome:n,servico:s,whatsapp:w,data:new Date().toISOString()}));
+  document.getElementById("formMsg").innerHTML='<div class="form-ok">Interesse registrado neste aparelho. A conexão com um cadastro online será a próxima evolução.</div>';
+}
+function requestLocation(){
+  if(!navigator.geolocation){alert("Este navegador não oferece localização.");return}
+  navigator.geolocation.getCurrentPosition(
+    p=>alert("Localização autorizada. Coordenadas recebidas. O ordenamento por distância entra na próxima versão conectada."),
+    ()=>alert("Não foi possível obter a localização. Você pode continuar usando o Guia normalmente.")
+  );
+}
+</script>
+</body>
+</html>
